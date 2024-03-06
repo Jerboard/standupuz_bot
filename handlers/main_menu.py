@@ -209,8 +209,17 @@ async def book_6_text(msg: Message, state: FSMContext):
     await state.update_data(data={'name': msg.text.capitalize()})
     data = await state.get_data()
     await state.finish()
-    text = 'Спасибо! Администратор свяжется с Вами для завершения бронирования и оплаты с 14:00 до 22:00 по будням, ' \
-           'с 16:00 до 23:00 вых'
+
+    event_info = get_event_info (data['event_id'])
+
+    if event_info ['text_3']:
+        text = event_info ['text_3']
+    else:
+        info = get_info ()
+        text = info ['text_3']
+
+    # text = 'Спасибо! Администратор свяжется с Вами для завершения бронирования и оплаты с 14:00 до 22:00 по будням, ' \
+    #        'с 16:00 до 23:00 вых'
     await bot.edit_message_text(text=text,
                                 chat_id=data['chat_id'],
                                 message_id=data['message_id'])
