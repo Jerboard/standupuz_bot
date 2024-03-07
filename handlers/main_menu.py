@@ -14,6 +14,12 @@ from keyboards.inline_kb import get_admin_kb, get_events_list_kb, get_book_kb, g
      get_social_medias_kb, get_alert_1_kb, get_alert_2_kb, get_sent_phone_kb, get_sent_name_kb
 
 
+# @dp.message_handler(lambda msg: msg.from_user.id != 524275902, state='*')
+# async def com_start(msg: Message):
+#     await msg.answer('Бот временно не доступен. Попробуйте вернуться позже')
+#     print('---')
+
+
 # команда старт
 @dp.message_handler(commands=['start'], state='*')
 async def com_start(msg: Message, state: FSMContext):

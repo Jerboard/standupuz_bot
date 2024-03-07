@@ -235,13 +235,15 @@ async def edit_text(msg: Message, state: FSMContext):
 @dp.callback_query_handler(text_startswith='edit_event_accept', state='*')
 async def create_new_event(cb: CallbackQuery, state: FSMContext):
     data = await state.get_data()
+    # for i in data.items():
+    #     print(i)
 
     if data['type'] == 'new':
 
         if data['title'] == '':
             await cb.answer('❗️Ошибка. Добавьте название', show_alert=True)
 
-        elif data['tariffs']:
+        elif not data['tariffs']:
             await cb.answer('❗️Ошибка. Добавьте опции', show_alert=True)
 
         else:

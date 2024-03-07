@@ -172,12 +172,19 @@ def get_events_options(event_id):
 
 
 # список опций на мероприятие
-def get_option_info(option_id):
+def get_option_info(option_id: int, event_id: int, option_name: str):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
-    result = cur.execute('select * from events_options where id = ? ', (option_id,)).fetchone()
-    columns = [column[0] for column in cur.description]
-    result_dict = dict(zip(columns, result))
+    result = cur.execute('select * from events_options where id = ?', (option_id,)).fetchone()
+    if not result:
+        result = cur.execute (
+            'select * from events_options where event_id = ? and name = ?', (option_id,)).fetchone ()
+
+    if result:
+        columns = [column[0] for column in cur.description]
+        result_dict = dict(zip(columns, result))
+    else:
+        result_dict = {}
     cur.close()
     return result_dict
 
