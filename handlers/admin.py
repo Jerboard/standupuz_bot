@@ -175,7 +175,7 @@ async def update_google_table(cb: CallbackQuery, state: FSMContext):
         text = '✅ База обновлена'
     else:
         text = (f'‼️ База обновлена некорректно.\n'
-                f'Ошибки:\n\n'
+                f'Ошибки:\n'
                 f'{error_text}')
 
     await sent.edit_text(text=text[:2000])

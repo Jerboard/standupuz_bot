@@ -90,12 +90,13 @@ def del_all_event_option(event_id: int):
 
 
 # добавляет опцию
-def add_option(event_id: int, title: str, empty_place: int, all_place: int, cell: str):
+def add_option(option_id: int, event_id: int, title: str, empty_place: int, all_place: int, cell: str):
     conn = sqlite3.connect (db_path)
     cur = conn.cursor ()
-    items = (event_id, title, empty_place, all_place, cell)
+    items = (option_id, event_id, title, empty_place, all_place, cell)
+    print(items)
     cur.execute(
-        'insert into events_options(event_id, name, empty_place,all_place, cell) values(?, ?, ?, ?, ?)', items)
+        'insert into events_options(id, event_id, name, empty_place,all_place, cell) values(?, ?, ?, ?, ?, ?)', items)
     conn.commit()
     cur.close()
 

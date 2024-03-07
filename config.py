@@ -5,6 +5,7 @@ load_dotenv ()
 
 DEBUG = bool(int(os.getenv('DEBUG')))
 TOKEN = os.getenv('TOKEN')
+# TOKEN = '7181274585:AAEPJ_CXjhKFR3CiLhV8W9AS_8KmHej7JmI'
 google_table_id = os.getenv('GOOGLE_TABLE_ID')
 bot_id = int(os.getenv('BOT_ID'))
 

@@ -109,6 +109,7 @@ def google_update() -> str:
             # опции мест. Сначала удаляем все старые, записываем новые
             options = table.get_values ('A5:B9')
 
+            old_event_options = db.get_events_options(event_id=event['id'])
             db.del_all_event_option(event['id'])
             row_num = 5
             for option in options:
@@ -118,9 +119,18 @@ def google_update() -> str:
                     cell = f'B{row_num}'
                     cell_f = table.acell (cell, value_render_option='FORMULA').value
                     all_place = int(cell_f.split('-')[0][1:])
+                    option_id = None
+                    # сохраняет id для тех кто заполняет заявку
+                    if old_event_options:
+                        old_option = [d for d in old_event_options if d ['cell'] == cell]
+
+                        if old_option:
+                            option_id = old_option[0]['id']
+
                     row_num += 1
 
                     db.add_option(
+                        option_id=option_id,
                         event_id=event['id'],
                         title=option_title,
                         empty_place=empty_place,
