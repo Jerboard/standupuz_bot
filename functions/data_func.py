@@ -172,7 +172,8 @@ def get_events_options(event_id):
 
 
 # список опций на мероприятие
-def get_option_info(option_id: int, event_id: int, option_name: str):
+# def get_option_info(option_id: int, event_id: int, option_name: str):
+def get_option_info(option_id: int):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     result = cur.execute('select * from events_options where id = ?', (option_id,)).fetchone()
