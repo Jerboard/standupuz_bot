@@ -159,8 +159,8 @@ def google_update() -> str:
                             page_id=table.id
                         )
                     except Exception as ex:
-                        error_text = (f'{error_text}\n❌ Не удалось обновить бронь {table.title} '
-                                      f'{place[2]} {place[1]} тел. {place[5]}:\n{ex}')
+                        error_text = (f'{error_text}\n❌ Не удалось обновить бронь {table.title}\n'
+                                      f'{place[1]} {place[2]} {place[1]} тел. {place[5]}:\n{ex}')
 
     return error_text
 

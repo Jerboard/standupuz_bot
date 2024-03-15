@@ -15,12 +15,11 @@ from config import DEBUG
 async def start_schedulers():
     # scheduler.add_job(check_google_update, 'interval', minutes=1)
     scheduler.add_job(daily_event_check, 'cron', hour=21)
-    # add_start_schedulers()
     scheduler.start()
 
 
 async def on_startup(dp_: Dispatcher):
-    # await start_schedulers()
+    await start_schedulers()
     logging.warning('start polling')
 
 
